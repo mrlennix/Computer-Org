@@ -54,10 +54,27 @@ _scanf:
 _compare:
     CMP R2, #'+'           @ compare against the constant char '@'
     BEQ _add	           @ branch to equal handler
+    CMP R2,#'-'
+    BEQ _sub
+    CMP R2,#'M'
+    BEQ _max
+    CMP R2,#'*'
+    BEQ _multi
+
     
  
 _add:
-    add R0,R4,R3
+    ADD R0,R4,R3
+
+_sub:
+    SUB R0,R4,R3
+_multi:
+    MUL R0,R4,R3
+
+_max:
+    BLT R0,R4,R3
+
+
 
 _reg_dump:
     PUSH {LR}           @ backup registers
