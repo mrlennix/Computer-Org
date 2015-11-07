@@ -9,6 +9,8 @@ main:
 	BL _scanf
 	MOV R10,R0
 	BL _getop
+	MOV R1,R0
+	BL _printf
 	B main
 _scanf:
 	PUSH {LR}
@@ -25,7 +27,7 @@ _getchar:
 	MOV R0,#0
 	MOV R2,#1
 	LDR R1,=read_char
-	SWI O
+	SWI 0
 	LDR R0, [R1]
 	AND R0, #0xFF
 	MOV PC,LR
@@ -42,23 +44,30 @@ _getop:
 	POP {LR}
 	MOV PC,LR
 _printf:
+	PUSH {LR}
 	LDR R0,=printf_str
-	MOV R1,R0
+	MOV R1,R1
 	BL printf
 	POP {LR}
 	MOV PC,LR
 _sum:
-	ADD R8,R8,R10
-	BL _printf
+	MOV R5,LR
+	ADD R0,R8,R10
+	MOV PC,LR
 _difference:
-	SUB R8,R8,R10
-	BL _printf
+	MOV R5,LR
+	SUB R0,R8,R10
+	MOV PC,R5
 _max:
-	MOVGE R8,R10
-	BL _printf
+        MOV R5,LR
+        CMP  R10,R8
+	MOVLE R0,R8
+	MOVGT R0,R10
+	MOV PC,R5
 _product:
-	MUL R8,R8,R10
-	BL _printf
+	MOV R5,LR
+	MUL R0,R8,R10
+	MOV PC,R5
 
 
 .data
