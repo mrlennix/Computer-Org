@@ -1,7 +1,6 @@
 
     .global main
-    .func main
-   
+    .func main 
 main:
     BL _scanf
     MOV R4,R0
@@ -10,8 +9,8 @@ main:
     BL _scanf
     MOV R3,R0
     BL _compare
-    MOV R1,R0
-    BL  _printf         
+    MOV  R1,R5 
+    BL  _printf
     B   main
 
 _print:
@@ -56,23 +55,20 @@ _compare:
     BEQ _add	           @ branch to equal handler
     CMP R2,#'-'
     BEQ _sub
-    CMP R2,#'M'
-    BEQ _max
     CMP R2,#'*'
     BEQ _multi
 
     
  
 _add:
-    ADD R0,R4,R3
+    ADD R5,R4,R3
 
 _sub:
-    SUB R0,R4,R3
+    SUB R5,R4,R3
 _multi:
-    MUL R0,R4,R3
+    MUL R5,R4,R3
 
-_max:
-    BLT R0,R4,R3
+
 
 
 
