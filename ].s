@@ -61,12 +61,12 @@ _compare:
     
  
 _add:
-    ADD R5,R4,R3
+    ADD R0,R4,R3
 
 _sub:
-    SUB R5,R4,R3
+    SUB R0,R4,R3
 _multi:
-    MUL R5,R4,R3
+    MUL R0,R4,R3
 
 
 
