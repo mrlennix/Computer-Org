@@ -2,10 +2,13 @@
 	.func main
 
 main:
+	MOV R0,#0
 	BL _scanf
 	MOV R1,R0
+	PUSH {R1}
 	BL _scanf
 	MOV R2,R0
+	POP {R1}
 	BL count_part
 	MOV R1,R0
 	BL _printf
@@ -21,20 +24,20 @@ count_part:
 	CMP R2,#0
 	MOVEQ R0,#0
 	POPEQ {PC}
-	PUSH {R0}
+
+	PUSH {R2}
 	PUSH {R1}
 	SUB R1,R1,R2
-	PUSH {R0}
 	BL count_part
 	MOV R4,R0
 	POP {R1}
-	PUSH {R2}
+	PUSH {R4}
 	SUB R2,R2,#1
-	BL count_part
+	BL count_part 
 	MOV R5,R0
-	ADD R0,R4,R5
+	POP {R4}
 	POP {R2}
-	PUSH {R0}
+	ADD R0,R4,R5
 	POP {PC}
 	
 
