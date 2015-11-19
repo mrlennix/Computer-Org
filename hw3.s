@@ -10,6 +10,8 @@ main:
 	MOV R2,R0
 	POP {R1}
 	BL count_part
+	MOV R3,R2
+	MOV R2,R1
 	MOV R1,R0
 	BL _printf
 	BL main
@@ -63,4 +65,4 @@ _printf:
 
 .data
 format_str:		.asciz		"%d"
-printf_str:		.asciz		"%d\n"
+printf_str:		.asciz		"There are %d partitions of %d using integers up to %d\n"
