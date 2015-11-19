@@ -26,7 +26,6 @@ count_part:
 	CMP R2,#0
 	MOVEQ R0,#0
 	POPEQ {PC}
-
 	PUSH {R2}
 	PUSH {R1}
 	SUB R1,R1,R2
@@ -35,13 +34,13 @@ count_part:
 	POP {R1}
 	PUSH {R4}
 	SUB R2,R2,#1
-	BL count_part 
+	BL count_part
 	MOV R5,R0
 	POP {R4}
 	POP {R2}
 	ADD R0,R4,R5
 	POP {PC}
-	
+
 
 _scanf:
 	PUSH {LR}
@@ -52,7 +51,7 @@ _scanf:
 	LDR R0,[SP]
 	ADD SP,SP,#4
 	POP {PC}
-	
+
 
 _printf:
 	PUSH {LR}
