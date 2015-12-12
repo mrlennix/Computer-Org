@@ -5,15 +5,12 @@ main:
 	MOV R7,#0
 	MOV R1,#0
 	MOV R2,#255
-	MOV R3,#-255
 LOOP:
 	CMP R1,#10	@if R1 = 10 exit
 	BEQ done	@if 10 exit
 	PUSH {R1}
 	PUSH {R2}
-	PUSH {R3}
 	BL _scanf	@GET INPUT
-	POP {R3}
 	POP {R2}
 	POP {R1}
 	CMP R8,R0	@if R2 < input
@@ -29,7 +26,6 @@ LOOP:
 	B LOOP
 
 done:	PUSH {R2}
-@	PUSH {R3}
 	MOV  R0,#0
 read:
 	CMP R0,#10
@@ -53,7 +49,6 @@ read:
 
 
 rdone:
-	@POP {R3}
 	POP {R2}
 	MOV R1,R2
 	BL _pmin
